@@ -7,14 +7,37 @@ document.addEventListener('DOMContentLoaded', () => {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
+      let returnButton = document.createElement('button')
+      returnButton.innerText = 'Return to World Selection'
+      returnButton.id = "returnButton"
+      let renderContainer = document.getElementById('renderContainer')
+      renderContainer.appendChild(returnButton)
     } else if (event.target.innerText === 'Harry Potter') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
+      let returnButton = document.createElement('button')
+      returnButton.innerText = 'Return to World Selection'
+      returnButton.id = "returnButton"
+      let renderContainer = document.getElementById('renderContainer')
+      renderContainer.appendChild(returnButton)
     } else if (event.target.innerText === 'The Lord of the Rings') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
+      let returnButton = document.createElement('button')
+      returnButton.innerText = 'Return to World Selection'
+      returnButton.id = "returnButton"
+      let renderContainer = document.getElementById('renderContainer')
+      renderContainer.appendChild(returnButton)
+    } else if (event.target.innerText === 'Return to World Selection') {
+      document.getElementById("worldContainer").style.display = 'block'
+      let htmlCollection = document.getElementsByClassName('recipesContainer')
+      let recipesContainer = Array.from(htmlCollection)
+      recipesContainer.map(recipe => {
+        recipe.style.display = 'none'
+      })
+      event.target.remove()
     }
   })
 
@@ -41,6 +64,7 @@ function createWorlds(world) {
   let renderContainer = document.getElementById('renderContainer')
   let worldRecipesContainer = document.createElement('div')
   worldRecipesContainer.id = world.name
+  worldRecipesContainer.className = 'recipesContainer'
   worldRecipesContainer.style.display = 'none'
   let worldHeader = document.createElement('h1')
   worldHeader.innerText = world.name
