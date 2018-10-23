@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   getData()
 
   document.addEventListener('click', (event) => {
+    event.preventDefault()
     if (event.target.innerText === 'Star Wars') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
@@ -38,6 +39,32 @@ document.addEventListener('DOMContentLoaded', () => {
         recipe.style.display = 'none'
       })
       event.target.remove()
+    } else if (event.target.innerText === 'Like') {
+      let ratingField = event.target.previousSibling
+      fetch('http://localhost:3000/api/v1/ratings', {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          score: true,
+          recipe_id: event.target.id,
+        })
+      })
+    } else if (event.target.innerText === 'Dislike') {
+      let ratingField = event.target.previousSibling.previousSibling
+      fetch('http://localhost:3000/api/v1/ratings', {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          score: false,
+          recipe_id: event.target.id,
+        })
+      })
     }
   })
 
@@ -50,6 +77,32 @@ function getData() {
     results.map(result => createWorlds(result))
   })
 }
+
+// function getRecipes() {
+//   fetch('http://localhost:3000/api/v1/worlds')
+//   .then(results => results.json())
+//   .then(recipes => {
+//     recipes.map(recipe => makeRecipes(recipe))
+//   })
+// }
+// 
+// function makeRecipes(recipe) {
+//   let recipeIdentifier = recipe.id
+//   let allRatings = recipe.ratings
+//   let positiveRatings = ratings.filter(rating => rating.score === true)
+//   let percentRating = (positiveRatings.length / ratings.length) * 100
+//   console.log(percentRating)
+// }
+//
+// function calculateRating(recipeId) {
+//
+//   if (recipe.id === recipeId) {
+//     let ratings = recipe.ratings
+//     let positiveRatings = ratings.filter(rating => rating.score === true)
+//     let percentRating = (positiveRatings.length / ratings.length) * 100
+//     console.log(percentRating)
+//   }
+// }
 
 function createWorlds(world) {
   // world selection
@@ -84,6 +137,12 @@ function createWorlds(world) {
     let percentRating = (positiveRatings.length / ratings.length) * 100
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
+    let upVote = document.createElement('button')
+    upVote.id = recipe.id
+    upVote.innerText = "Like"
+    let downVote = document.createElement('button')
+    downVote.id = recipe.id
+    downVote.innerText = "Dislike"
 
     // render ingredients
     let ingredientsUl = document.createElement('ul')
@@ -100,6 +159,8 @@ function createWorlds(world) {
     recipesDiv.appendChild(recipeHeader)
     recipesDiv.appendChild(recipeImage)
     recipesDiv.appendChild(ratingP)
+    recipesDiv.appendChild(upVote)
+    recipesDiv.appendChild(downVote)
     recipesDiv.appendChild(ingredientsUl)
     recipesDiv.appendChild(recipeInstructions)
   })
