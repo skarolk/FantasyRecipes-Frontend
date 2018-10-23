@@ -3,9 +3,18 @@ const recipesAPI = 'http://localhost:3000/api/v1/recipes'
 const ratingsAPI = 'http://localhost:3000/api/v1/ratings'
 const ingredientsAPI = 'http://localhost:3000/api/v1/ingredients'
 document.addEventListener('DOMContentLoaded', () => {
+
   getData()
+
   document.addEventListener('click', (event) => {
     event.preventDefault()
+
+    $(document).ready(function(){
+      $(".main").tiltedpage_scroll({
+        angle: 20
+      });
+		});
+
     if (event.target.className === 'Star Wars') {
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
@@ -135,9 +144,7 @@ function createWorlds(world) {
   worldHeader.innerText = world.name
   // render recipes
   let recipesDiv = document.createElement('div')
-  // recipesDiv.className = 'carousel'
-  // let recipesDiv = document.getElementById('recipeCard')
-  // recipesDiv.className = 'carousel-cell'
+  recipesDiv.className = 'main'
   let recipes = world.recipes
   recipes.forEach(recipe => {
     let recipeHeader = document.createElement('h2')
@@ -168,8 +175,12 @@ function createWorlds(world) {
     let recipeInstructions = document.createElement('p')
     recipeInstructions.innerText = recipe.instructions
     //create recipes div
+    let recipeSection = document.createElement('section')
+    // recipeSection.className = `page${recipe.id}`
+    recipeSection.className = `page${recipe.id}`
     let recipeDiv = document.createElement('div')
-    // recipeDiv.className = 'carousel-cell'
+    recipeDiv.className = 'page_container'
+    // recipeDiv.style = 'transform: rotateX(0deg) scale(1, 1); opacity: 1;'
     recipeDiv.appendChild(recipeHeader)
     recipeDiv.appendChild(recipeImage)
     recipeDiv.appendChild(ratingP)
@@ -177,9 +188,19 @@ function createWorlds(world) {
     recipeDiv.appendChild(downVote)
     recipeDiv.appendChild(ingredientsUl)
     recipeDiv.appendChild(recipeInstructions)
-    recipesDiv.appendChild(recipeDiv)
+    recipeSection.appendChild(recipeDiv)
+    recipesDiv.appendChild(recipeSection)
+    // debugger
   })
   worldRecipesContainer.appendChild(worldHeader)
   worldRecipesContainer.appendChild(recipesDiv)
   renderContainer.appendChild(worldRecipesContainer)
 } // create worlds end
+
+$(".main").tiltedpage_scroll({
+    sectionContainer: "> section",     // In case you don't want to use <section> tag, you can define your won CSS selector here
+    angle: 50,                         // You can define the angle of the tilted section here. Change this to false if you want to disable the tilted effect. The default value is 50 degrees.
+    opacity: true,                     // You can toggle the opacity effect with this option. The default value is true
+    scale: true,                       // You can toggle the scaling effect here as well. The default value is true.
+    outAnimation: true                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
+  });

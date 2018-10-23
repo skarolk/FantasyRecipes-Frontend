@@ -7,7 +7,7 @@
     scale: true,
     outAnimation: true
 	};
-
+  console.log("JQUERYTILTEDPAGE-SCROLL LOADED");
 
   $.fn.tiltedpage_scroll = function(options){
     var settings = $.extend({}, defaults, options),
