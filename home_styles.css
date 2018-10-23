@@ -8,10 +8,6 @@ html, body {
   overflow: hidden;
 }
 
-#poop {
-  z-index: 500;
-}
-
 #main_container {
   overflow: hidden;
   position: absolute;
@@ -32,16 +28,6 @@ html, body {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-}
-
-#play img {
-  width: 100px;
-}
-#pause img {
-  width: 90px;
-}
-#pause {
-  display: none;
 }
 
 @media (min-width: 768px) {
