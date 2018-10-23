@@ -1,3 +1,8 @@
+const worldsAPI = 'http://localhost:3000/api/v1/worlds'
+const recipesAPI = 'http://localhost:3000/api/v1/recipes'
+const ratingsAPI = 'http://localhost:3000/api/v1/ratings'
+const ingredientsAPI = 'http://localhost:3000/api/v1/ingredients'
+
 document.addEventListener('DOMContentLoaded', () => {
 
   getData()
@@ -5,30 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (event) => {
     event.preventDefault()
 
-    if (event.target.innerText === 'Star Wars') {
-      let targetDiv = document.getElementById(`${event.target.innerText}`)
+    if (event.target.className === 'Star Wars') {
+      let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
-      document.getElementById("worldContainer").style.display = 'none'
+      document.getElementById("main_container").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
-    else if (event.target.innerText === 'Harry Potter') {
-      let targetDiv = document.getElementById(`${event.target.innerText}`)
+    else if (event.target.className === 'HarryPotter') {
+      let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
-      document.getElementById("worldContainer").style.display = 'none'
+      document.getElementById("main_container").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
-    else if (event.target.innerText === 'The Lord of the Rings') {
-      let targetDiv = document.getElementById(`${event.target.innerText}`)
+    else if (event.target.className === 'The Lord of the Rings') {
+      let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
-      document.getElementById("worldContainer").style.display = 'none'
+      document.getElementById("main_container").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
@@ -37,17 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     } // end lotr 'else if'
     else if (event.target.innerText === 'Return to World Selection') {
       console.log(event.target);
-      document.getElementById("worldContainer").style.display = 'block'
+      document.getElementById("main_container").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
       let recipesContainer = Array.from(htmlCollection)
-      debugger
       recipesContainer.map(recipe => {
         recipe.style.display = 'none'
       })
       event.target.remove()
     } // end return to selection 'else if'
     else if (event.target.innerText === 'Like') {
-      debugger
       let ratingField = event.target.previousSibling
       fetch('http://localhost:3000/api/v1/ratings', {
         method: "POST",
@@ -59,10 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
           score: true,
           recipe_id: event.target.id,
         })
-      }) // post likes fetch end
+      })  // post likes fetch end
+      .then(result => result.json())
+      .then(rating => {
+        fetchRatings(rating)
+      })
     } // end like 'else if'
     else if (event.target.innerText === 'Dislike') {
-      debugger
       let ratingField = event.target.previousSibling.previousSibling
       fetch('http://localhost:3000/api/v1/ratings', {
         method: "POST",
@@ -75,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
           recipe_id: event.target.id,
         })
       }) // post dislikes fetch end
+      .then(result => result.json())
+      .then(rating => {
+        fetchRatings(rating)
+      })
     } // end dislike 'else if'
   }) // click event listener end
 
@@ -88,39 +98,40 @@ function getData() {
   )
 } // getData end
 
-// function getRecipes() {
-//   fetch('http://localhost:3000/api/v1/worlds')
-//   .then(results => results.json())
-//   .then(recipes => {
-//     recipes.map(recipe => makeRecipes(recipe))
-//   })
-// }
-//
-// function makeRecipes(recipe) {
-//   let recipeIdentifier = recipe.id
-//   let allRatings = recipe.ratings
-//   let positiveRatings = ratings.filter(rating => rating.score === true)
-//   let percentRating = (positiveRatings.length / ratings.length) * 100
-//   console.log(percentRating)
-// }
-//
-// function calculateRating(recipeId) {
-//
-//   if (recipe.id === recipeId) {
-//     let ratings = recipe.ratings
-//     let positiveRatings = ratings.filter(rating => rating.score === true)
-//     let percentRating = (positiveRatings.length / ratings.length) * 100
-//     console.log(percentRating)
-//   }
-// }
+function fetchRatings(rating) {
+  fetch(ratingsAPI)
+    .then(result => {
+      return result.json()
+    })
+    .then(resultJSON => {
+      matchingRatings = resultJSON.filter(eachRating => {
+        return eachRating.recipe_id == rating.recipe_id
+      }) // filter end
+      return calculateLikePercentage(matchingRatings, rating)
+    })
+} // fetchRatings end
+function calculateLikePercentage(matchingRatings, rating) {
+  let upvote = matchingRatings.filter(eachRating => {
+    return eachRating.score === true
+  })
+  let upvotePercentage = `${Math.ceil((upvote.length / matchingRatings.length) * 100)}% liked`
+  let allPTags = document.querySelectorAll('p')
+  let allPTagsArray = Array.from(allPTags)
+  let pTag = allPTagsArray.find(ptag => {
+    return ptag.id == rating.recipe_id
+  })
+  pTag.innerText = upvotePercentage
+} // calculateLikePercentage end
 
 function createWorlds(world) {
   // world selection
-  let worldContainer = document.getElementById('worldContainer')
-  let worldButton = document.createElement('button')
+  let globalContainer = document.getElementsByClassName('main_container')
+  let worldContainer = document.getElementById('links')
+  let worldButton = document.createElement('a')
+  worldButton.href = ''
   worldButton.innerText = world.name
   worldButton.image = world.image
-  worldButton.id = world.id
+  worldButton.className = world.name
   worldContainer.appendChild(worldButton)
 
   // world render
@@ -147,6 +158,7 @@ function createWorlds(world) {
     let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% liked`
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
+    ratingP.id = recipe.id
     let upVote = document.createElement('button')
     upVote.id = recipe.id
     upVote.innerText = "Like"
