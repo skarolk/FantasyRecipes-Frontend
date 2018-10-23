@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('click', (event) => {
     event.preventDefault()
+
     if (event.target.innerText === 'Star Wars') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
@@ -13,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
       returnButton.id = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
-    } else if (event.target.innerText === 'Harry Potter') {
+    } // end star wars 'if'
+      else if (event.target.innerText === 'Harry Potter') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
@@ -22,7 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
       returnButton.id = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
-    } else if (event.target.innerText === 'The Lord of the Rings') {
+    } // end hp 'else if'
+      else if (event.target.innerText === 'The Lord of the Rings') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
@@ -31,13 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
       returnButton.id = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
-    } else if (event.target.innerText === 'Return to World Selection') {
+    } // end lotr 'else if'
+      else if (event.target.innerText === 'Return to World Selection') {
       document.getElementById("worldContainer").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
       let recipesContainer = Array.from(htmlCollection)
       recipesContainer.map(recipe => {
         recipe.style.display = 'none'
-      })
+      }) // end return to selection 'else if'
       event.target.remove()
     } else if (event.target.innerText === 'Like') {
       let ratingField = event.target.previousSibling
@@ -51,8 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
           score: true,
           recipe_id: event.target.id,
         })
-      })
-    } else if (event.target.innerText === 'Dislike') {
+      }) // post likes fetch end
+    } // end like 'else if' 
+     else if (event.target.innerText === 'Dislike') {
       let ratingField = event.target.previousSibling.previousSibling
       fetch('http://localhost:3000/api/v1/ratings', {
         method: "POST",
@@ -64,19 +69,19 @@ document.addEventListener('DOMContentLoaded', () => {
           score: false,
           recipe_id: event.target.id,
         })
-      })
-    }
-  })
+      }) // post dislikes fetch end
+    } // end dislike 'else if'
+  }) // click event listener end
 
-})
+}) // dom content loaded event listener end
 
 function getData() {
   fetch('http://localhost:3000/api/v1/worlds')
   .then(results => results.json())
-  .then(results => {
+  .then(results =>
     results.map(result => createWorlds(result))
-  })
-}
+  )
+} // getData end
 
 // function getRecipes() {
 //   fetch('http://localhost:3000/api/v1/worlds')
@@ -85,7 +90,7 @@ function getData() {
 //     recipes.map(recipe => makeRecipes(recipe))
 //   })
 // }
-// 
+//
 // function makeRecipes(recipe) {
 //   let recipeIdentifier = recipe.id
 //   let allRatings = recipe.ratings
@@ -167,4 +172,4 @@ function createWorlds(world) {
   worldRecipesContainer.appendChild(worldHeader)
   worldRecipesContainer.appendChild(recipesDiv)
   renderContainer.appendChild(worldRecipesContainer)
-}
+} // create worlds end
