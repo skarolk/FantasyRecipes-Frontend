@@ -144,7 +144,7 @@ function createWorlds(world) {
     // render ratings
     let ratings = recipe.ratings
     let positiveRatings = ratings.filter(rating => rating.score === true)
-    let percentRating = (positiveRatings.length / ratings.length) * 100
+    let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% liked`
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
     let upVote = document.createElement('button')
