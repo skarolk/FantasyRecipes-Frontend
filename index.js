@@ -135,6 +135,9 @@ function createWorlds(world) {
   worldHeader.innerText = world.name
   // render recipes
   let recipesDiv = document.createElement('div')
+  // recipesDiv.className = 'carousel'
+  // let recipesDiv = document.getElementById('recipeCard')
+  // recipesDiv.className = 'carousel-cell'
   let recipes = world.recipes
   recipes.forEach(recipe => {
     let recipeHeader = document.createElement('h2')
@@ -165,13 +168,16 @@ function createWorlds(world) {
     let recipeInstructions = document.createElement('p')
     recipeInstructions.innerText = recipe.instructions
     //create recipes div
-    recipesDiv.appendChild(recipeHeader)
-    recipesDiv.appendChild(recipeImage)
-    recipesDiv.appendChild(ratingP)
-    recipesDiv.appendChild(upVote)
-    recipesDiv.appendChild(downVote)
-    recipesDiv.appendChild(ingredientsUl)
-    recipesDiv.appendChild(recipeInstructions)
+    let recipeDiv = document.createElement('div')
+    // recipeDiv.className = 'carousel-cell'
+    recipeDiv.appendChild(recipeHeader)
+    recipeDiv.appendChild(recipeImage)
+    recipeDiv.appendChild(ratingP)
+    recipeDiv.appendChild(upVote)
+    recipeDiv.appendChild(downVote)
+    recipeDiv.appendChild(ingredientsUl)
+    recipeDiv.appendChild(recipeInstructions)
+    recipesDiv.appendChild(recipeDiv)
   })
   worldRecipesContainer.appendChild(worldHeader)
   worldRecipesContainer.appendChild(recipesDiv)
