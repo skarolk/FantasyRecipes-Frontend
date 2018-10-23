@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
-      else if (event.target.innerText === 'Harry Potter') {
+    else if (event.target.innerText === 'Harry Potter') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
-      else if (event.target.innerText === 'The Lord of the Rings') {
+    else if (event.target.innerText === 'The Lord of the Rings') {
       let targetDiv = document.getElementById(`${event.target.innerText}`)
       targetDiv.style.display = 'block'
       document.getElementById("worldContainer").style.display = 'none'
@@ -35,15 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
-      else if (event.target.innerText === 'Return to World Selection') {
+    else if (event.target.innerText === 'Return to World Selection') {
+      console.log(event.target);
       document.getElementById("worldContainer").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
       let recipesContainer = Array.from(htmlCollection)
+      debugger
       recipesContainer.map(recipe => {
         recipe.style.display = 'none'
-      }) // end return to selection 'else if'
+      })
       event.target.remove()
-    } else if (event.target.innerText === 'Like') {
+    } // end return to selection 'else if'
+    else if (event.target.innerText === 'Like') {
+      debugger
       let ratingField = event.target.previousSibling
       fetch('http://localhost:3000/api/v1/ratings', {
         method: "POST",
@@ -56,8 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
           recipe_id: event.target.id,
         })
       }) // post likes fetch end
-    } // end like 'else if' 
-     else if (event.target.innerText === 'Dislike') {
+    } // end like 'else if'
+    else if (event.target.innerText === 'Dislike') {
+      debugger
       let ratingField = event.target.previousSibling.previousSibling
       fetch('http://localhost:3000/api/v1/ratings', {
         method: "POST",
