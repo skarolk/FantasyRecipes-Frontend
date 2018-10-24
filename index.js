@@ -17,7 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   		});
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
-      document.getElementById("main_container").style.display = 'none'
+      document.getElementById("head").style.display = 'none'
+      document.getElementById("links").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
@@ -32,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
   		});
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
-      document.getElementById("main_container").style.display = 'none'
+      document.getElementById("head").style.display = 'none'
+      document.getElementById("links").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
@@ -47,7 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
   		});
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
-      document.getElementById("main_container").style.display = 'none'
+      document.getElementById("head").style.display = 'none'
+      document.getElementById("links").style.display = 'none'
       let returnButton = document.createElement('button')
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
@@ -55,7 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
     else if (event.target.innerText === 'Return to World Selection') {
-      document.getElementById("main_container").style.display = 'block'
+      document.getElementById("head").style.display = 'block'
+      document.getElementById("links").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
       let recipesContainer = Array.from(htmlCollection)
       recipesContainer.map(recipe => {

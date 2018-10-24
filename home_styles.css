@@ -63,8 +63,10 @@ body {
 
 #main_content {
   z-index: 2;
-  position: relative;
+  position: fixed;
+  right: 21%;
   display: inline-block;
+  padding-left: 15%;
 
   /* Vertical center */
   top: 50%;
@@ -72,6 +74,7 @@ body {
 }
 
 #main_content h1 {
+  z-index: 1000;
   text-transform: uppercase;
   font-weight: 600;
   font-family: 'proxima-nova-condensed', Helvetica;
