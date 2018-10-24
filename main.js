@@ -13,7 +13,7 @@
 
     src: [
       {
-        src: 'night.mp4',
+        src: '.git/three.mp4',
       }
     ],
 
