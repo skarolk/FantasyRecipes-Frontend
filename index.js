@@ -149,8 +149,8 @@ function createWorlds(world) {
   recipes.forEach(recipe => {
     let recipeHeader = document.createElement('h2')
     recipeHeader.innerText = recipe.name
-    let recipeImage = document.createElement('img')
-    recipeImage.src = recipe.image
+    // let recipeImage = document.createElement('img')
+    // recipeImage.src = recipe.image
     // render ratings
     let ratings = recipe.ratings
     let positiveRatings = ratings.filter(rating => rating.score === true)
@@ -178,11 +178,13 @@ function createWorlds(world) {
     let recipeSection = document.createElement('section')
     // recipeSection.className = `page${recipe.id}`
     recipeSection.className = `page${recipe.id}`
+    // recipeSection.style.backgroundImage = `url(${recipe.image})`
     let recipeDiv = document.createElement('div')
     recipeDiv.className = 'page_container'
+    recipeDiv.style.backgroundImage = `url(${recipe.image})`
     // recipeDiv.style = 'transform: rotateX(0deg) scale(1, 1); opacity: 1;'
     recipeDiv.appendChild(recipeHeader)
-    recipeDiv.appendChild(recipeImage)
+    // recipeDiv.appendChild(recipeImage)
     recipeDiv.appendChild(ratingP)
     recipeDiv.appendChild(upVote)
     recipeDiv.appendChild(downVote)

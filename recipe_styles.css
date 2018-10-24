@@ -285,7 +285,7 @@ pre code {
   font-size: 14px;
 }
 
-.tps-section:nth-child(1n+1) .tps-wrapper {
+/* .tps-section:nth-child(1n+1) .tps-wrapper {
   background: url(demo1.jpg) center center;
   background-size: cover;
 }
@@ -303,7 +303,7 @@ pre code {
 .tps-section:nth-child(4n+1) .tps-wrapper {
   background:  url(demo4.jpg) center center;
   background-size: cover;
-}
+} */
 
 .header {
   overflow: hidden;
