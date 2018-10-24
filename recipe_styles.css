@@ -285,6 +285,11 @@ pre code {
   font-size: 14px;
 }
 
+.page_container{
+  height: 500px;
+  background-size: 100% 100%;
+}
+
 /* .tps-section:nth-child(1n+1) .tps-wrapper {
   background: url(demo1.jpg) center center;
   background-size: cover;
