@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
     else if (event.target.className === 'Harry Potter') {
+      $(document).ready(function(){
+        $(".main").tiltedpage_scroll({
+          angle: 20
+        });
+  		});
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
       document.getElementById("main_container").style.display = 'none'
@@ -35,6 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
     else if (event.target.className === 'The Lord of the Rings') {
+      $(document).ready(function(){
+        $(".main").tiltedpage_scroll({
+          angle: 20
+        });
+  		});
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
       document.getElementById("main_container").style.display = 'none'
