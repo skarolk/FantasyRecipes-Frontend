@@ -9,13 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('click', (event) => {
     event.preventDefault()
 
-    $(document).ready(function(){
-      $(".main").tiltedpage_scroll({
-        angle: 20
-      });
-		});
-
     if (event.target.className === 'Star Wars') {
+      $(document).ready(function(){
+        $(".main").tiltedpage_scroll({
+          angle: 20
+        });
+  		});
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
       document.getElementById("main_container").style.display = 'none'
