@@ -140,7 +140,7 @@ function calculateLikePercentage(matchingRatings, rating) {
   let upvote = matchingRatings.filter(eachRating => {
     return eachRating.score === true
   })
-  let upvotePercentage = `${Math.ceil((upvote.length / matchingRatings.length) * 100)}% liked`
+  let upvotePercentage = `${Math.ceil((upvote.length / matchingRatings.length) * 100)}% of people liked this recipe`
   let allPTags = document.querySelectorAll('p')
   let allPTagsArray = Array.from(allPTags)
   let pTag = allPTagsArray.find(ptag => {
@@ -152,6 +152,9 @@ function createWorlds(world) {
   // world selection
   let globalContainer = document.getElementsByClassName('main_container')
   let worldContainer = document.getElementById('links')
+  // let worldContainer = document.createElement('div')
+  // worldContainer.id = 'links'
+  // globalContainer.appendChild(worldContainer)
   let worldButton = document.createElement('a')
   worldButton.href = ''
   worldButton.innerText = world.name
@@ -179,14 +182,16 @@ function createWorlds(world) {
     // render ratings
     let ratings = recipe.ratings
     let positiveRatings = ratings.filter(rating => rating.score === true)
-    let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% liked`
+    let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% of people liked this recipe`
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
     ratingP.id = recipe.id
-    let upVote = document.createElement('button')
+    let upVote = document.createElement('a')
+    upVote.href = ''
     upVote.id = recipe.id
     upVote.innerText = "Like"
-    let downVote = document.createElement('button')
+    let downVote = document.createElement('a')
+    downVote.href = ''
     downVote.id = recipe.id
     downVote.innerText = "Dislike"
     // render ingredients
@@ -195,6 +200,8 @@ function createWorlds(world) {
     ingredients.forEach(ingredient => {
       let ingredientsLi = document.createElement('p')
       ingredientsLi.innerText = `${ingredient.quantity} ${ingredient.name}`
+      ingredientsLi.className = 'ingredients'
+      ingredientsUl.className = 'ingredientsContainer'
       ingredientsUl.appendChild(ingredientsLi)
     })
     let recipeInstructions = document.createElement('p')
@@ -208,12 +215,20 @@ function createWorlds(world) {
     recipeDiv.className = 'page_container'
     recipeDiv.style.backgroundImage = `url(${recipe.image})`
     // recipeDiv.style = 'transform: rotateX(0deg) scale(1, 1); opacity: 1;'
+
+    recipeHeader.className = 'recipeHeader'
     recipeDiv.appendChild(recipeHeader)
-    // recipeDiv.appendChild(recipeImage)
+    ratingP.className = 'rating'
     recipeDiv.appendChild(ratingP)
-    recipeDiv.appendChild(upVote)
-    recipeDiv.appendChild(downVote)
+    upVote.className = 'ratingButton'
+    let ratingButtonDiv = document.createElement('div')
+    // ratingButtonDiv.id = 'links'
+    ratingButtonDiv.appendChild(upVote)
+    downVote.className = 'ratingButton'
+    ratingButtonDiv.appendChild(downVote)
+    recipeDiv.appendChild(ratingButtonDiv)
     recipeDiv.appendChild(ingredientsUl)
+    recipeInstructions.className = 'instructions'
     recipeDiv.appendChild(recipeInstructions)
     recipeSection.appendChild(recipeDiv)
     recipesDiv.appendChild(recipeSection)
