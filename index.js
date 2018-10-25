@@ -235,6 +235,8 @@ function newVideo() {
   document.getElementById('background_video').remove()
   let newVideo = document.createElement('video')
   newVideo.id = 'background_video'
+  newVideo.loop = true;
+  newVideo.mute = true;
   let mainContainer = document.getElementById('main_container')
   mainContainer.appendChild(newVideo)
   // newVideo.loop
