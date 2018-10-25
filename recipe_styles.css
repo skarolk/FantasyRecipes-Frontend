@@ -34,6 +34,7 @@ h1 {
   margin-bottom: 5px;
   font-size: 70px;
   font-weight: 100;
+  padding-bottom: 10%;
 }
 h2 {
   padding: 00px 20px 30px 20px;
@@ -48,7 +49,6 @@ h2 {
   margin-top: 10px;
   margin-bottom: 0;
 }
-
 
 .pointer {
   color: #00B0FF;

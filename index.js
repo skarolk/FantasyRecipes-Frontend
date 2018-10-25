@@ -5,9 +5,12 @@ const ingredientsAPI = 'http://localhost:3000/api/v1/ingredients'
 document.addEventListener('DOMContentLoaded', () => {
 
   getData()
+  renderVideo('.git/three.mp4')
 
   document.addEventListener('click', (event) => {
     event.preventDefault()
+
+    document.getElementById('background_video').innerHTML =  ''
 
     if (event.target.className === 'Star Wars') {
       $(document).ready(function(){
@@ -15,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
           angle: 20
         });
   		});
+      newVideo()
+      renderVideo('.git/sw.mp4')
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -31,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
           angle: 20
         });
   		});
+      newVideo()
+      renderVideo('.git/hp.mp4')
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -47,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
           angle: 20
         });
   		});
+      newVideo()
+      renderVideo('.git/lotr.mp4')
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -58,6 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
     else if (event.target.innerText === 'Return to World Selection') {
+      newVideo()
+      renderVideo('.git/three.mp4')
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
@@ -219,3 +230,33 @@ $(".main").tiltedpage_scroll({
     scale: true,                       // You can toggle the scaling effect here as well. The default value is true.
     outAnimation: true                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
   });
+
+function newVideo() {
+  document.getElementById('background_video').remove()
+  let newVideo = document.createElement('video')
+  newVideo.id = 'background_video'
+  let mainContainer = document.getElementById('main_container')
+  mainContainer.appendChild(newVideo)
+  // newVideo.loop
+}
+
+function renderVideo(targetUrl) {
+
+  var bv = new Bideo();
+  bv.init({
+    videoEl: document.querySelector('#background_video'),
+    container: document.querySelector('body'),
+    resize: true,
+
+    isMobile: window.matchMedia('(max-width: 768px)').matches,
+
+    playButton: document.querySelector('#play'),
+    pauseButton: document.querySelector('#pause'),
+
+    src: [
+      {
+        src: targetUrl,
+      },
+    ],
+  });
+};

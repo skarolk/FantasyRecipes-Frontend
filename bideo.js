@@ -29,7 +29,9 @@
       }
 
       this.startTime = (new Date()).getTime();
+
       this.opt.src.forEach(function (srcOb, i, arr) {
+        console.log(srcOb)
         var key
           , val
           , source = document.createElement('source');
@@ -41,29 +43,6 @@
         }
         self.videoEl.appendChild(source);
       });
-
-      if (self.opt.isMobile) {
-        if (self.opt.playButton) {
-          self.opt.videoEl.addEventListener('timeupdate', function () {
-            if (!self.onLoadCalled) {
-              self.opt.onLoad && self.opt.onLoad();
-              self.onLoadCalled = true;
-            }
-          });
-
-          self.opt.playButton.addEventListener('click', function () {
-            self.opt.pauseButton.style.display = 'inline-block';
-            this.style.display = 'none';
-            self.videoEl.play();
-          }, false);
-          self.opt.pauseButton.addEventListener('click', function () {
-            this.style.display = 'none';
-            self.opt.playButton.style.display = 'inline-block';
-            self.videoEl.pause();
-          }, false);
-        }
-      }
-      return;
     }
 
     this.resize = function () {
