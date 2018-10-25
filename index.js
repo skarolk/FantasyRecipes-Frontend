@@ -12,25 +12,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   document.addEventListener('click', (event) => {
+
     event.preventDefault()
 
     document.getElementById('background_video').innerHTML =  ''
 
+
     if (event.target.className === 'Star Wars') {
       document.getElementById('most-clicked-div').style.display = 'none'
-
       clickCounter[event.target.className] += 1
       let clicks = clickCounter[event.target.className]
       worldId = parseInt(event.target.id)
+
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
-
 
       $(document).ready(function(){
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/sw.mp4')
 
@@ -45,21 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
     else if (event.target.className === 'Harry Potter') {
-      document.getElementById('most-clicked-div').style.display = 'none'
 
+      document.getElementById('most-clicked-div').style.display = 'none'
       clickCounter[event.target.className] += 1
       let clicks = clickCounter[event.target.className]
       worldId = parseInt(event.target.id)
+
       fetchWorldClicks(worldId, clicks)
+
       trackClicks(clickCounter)
 
       $(document).ready(function(){
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/hp.mp4')
+
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -83,9 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/lotr.mp4')
+
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -101,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       newVideo()
       renderVideo('.git/three.mp4')
+
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
@@ -111,7 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
       event.target.remove()
     } // end return to selection 'else if'
     else if (event.target.innerText === 'Like') {
+
       let ratingField = event.target.previousSibling
+
       fetch(ratingsAPI, {
         method: "POST",
         headers: {
@@ -129,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     } // end like 'else if'
     else if (event.target.innerText === 'Dislike') {
+
       let ratingField = event.target.previousSibling.previousSibling
+
       fetch(ratingsAPI, {
         method: "POST",
         headers: {
@@ -169,6 +182,7 @@ function fetchRatings(rating) {
     return calculateLikePercentage(matchingRatings, rating)
   })
 } // fetchRatings end
+
 function calculateLikePercentage(matchingRatings, rating) {
   let upvote = matchingRatings.filter(eachRating => {
     return eachRating.score === true
@@ -193,23 +207,22 @@ function getDataForClicks() {
   })
 } // getDataForClicks end
 
-
 function trackClicks(world) {
-    clickCounter[world.name] = world.clicks
-    calculateMaximum(clickCounter)
+  clickCounter[world.name] = world.clicks
+  calculateMaximum(clickCounter)
 } // trackClicks end
 
 function calculateMaximum(clickCounter) {
-    let maximum = 0
-    maxName = ''
-    for (let world in clickCounter) {
-      if (clickCounter[world] > maximum) {
-        maximum = clickCounter[world]
-        maxName = world
-      }
+  let maximum = 0
+  maxName = ''
+  for (let world in clickCounter) {
+    if (clickCounter[world] > maximum) {
+      maximum = clickCounter[world]
+      maxName = world
     }
-    appendMaxiworld(maxName)
-  } // calculateMaxinum end
+  }
+  appendMaxiworld(maxName)
+} // calculateMaxinum end
 
 function appendMaxiworld(maxName) {
   let mostClickedDiv = document.getElementById('most-clicked-div')
@@ -232,11 +245,13 @@ function fetchWorldClicks(id, clicks) {
   .then(console.log)
 } // fetchWorldClicks end
 
-
 function createWorlds(world) {
   // world selection
   let globalContainer = document.getElementsByClassName('main_container')
   let worldContainer = document.getElementById('links')
+  // let worldContainer = document.createElement('div')
+  // worldContainer.id = 'links'
+  // globalContainer.appendChild(worldContainer)
   let worldButton = document.createElement('a')
   worldButton.href = ''
   worldButton.innerText = world.name
@@ -250,8 +265,10 @@ function createWorlds(world) {
   worldRecipesContainer.id = world.name
   worldRecipesContainer.className = 'recipesContainer'
   worldRecipesContainer.style.display = 'none'
-  let worldHeader = document.createElement('h1')
-  worldHeader.innerText = world.name
+  worldButton.id = world.id
+  let worldHeader = document.createElement('img')
+  worldHeader.className = 'logo'
+  worldHeader.src = world.image
   // render recipes
   let recipesDiv = document.createElement('div')
   recipesDiv.className = 'main'
@@ -273,18 +290,22 @@ function createWorlds(world) {
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
     ratingP.id = recipe.id
-    let upVote = document.createElement('button')
+    let upVote = document.createElement('a')
+    upVote.href = ''
     upVote.id = recipe.id
     upVote.innerText = "Like"
-    let downVote = document.createElement('button')
+    let downVote = document.createElement('a')
+    downVote.href = ''
     downVote.id = recipe.id
     downVote.innerText = "Dislike"
     // render ingredients
-    let ingredientsUl = document.createElement('ul')
+    let ingredientsUl = document.createElement('div')
     let ingredients = recipe.ingredients
     ingredients.forEach(ingredient => {
-      let ingredientsLi = document.createElement('li')
+      let ingredientsLi = document.createElement('p')
       ingredientsLi.innerText = `${ingredient.quantity} ${ingredient.name}`
+      ingredientsLi.className = 'ingredients'
+      ingredientsUl.className = 'ingredientsContainer'
       ingredientsUl.appendChild(ingredientsLi)
     })
     let recipeInstructions = document.createElement('p')
@@ -298,12 +319,20 @@ function createWorlds(world) {
     recipeDiv.className = 'page_container'
     recipeDiv.style.backgroundImage = `url(${recipe.image})`
     // recipeDiv.style = 'transform: rotateX(0deg) scale(1, 1); opacity: 1;'
+
+    recipeHeader.className = 'recipeHeader'
     recipeDiv.appendChild(recipeHeader)
-    // recipeDiv.appendChild(recipeImage)
+    ratingP.className = 'rating'
     recipeDiv.appendChild(ratingP)
-    recipeDiv.appendChild(upVote)
-    recipeDiv.appendChild(downVote)
+    upVote.className = 'ratingButton'
+    let ratingButtonDiv = document.createElement('div')
+    // ratingButtonDiv.id = 'links'
+    ratingButtonDiv.appendChild(upVote)
+    downVote.className = 'ratingButton'
+    ratingButtonDiv.appendChild(downVote)
+    recipeDiv.appendChild(ratingButtonDiv)
     recipeDiv.appendChild(ingredientsUl)
+    recipeInstructions.className = 'instructions'
     recipeDiv.appendChild(recipeInstructions)
     recipeSection.appendChild(recipeDiv)
     recipesDiv.appendChild(recipeSection)
@@ -339,8 +368,6 @@ function renderVideo(targetUrl) {
     videoEl: document.querySelector('#background_video'),
     container: document.querySelector('body'),
     resize: true,
-
-    isMobile: window.matchMedia('(max-width: 768px)').matches,
 
     playButton: document.querySelector('#play'),
     pauseButton: document.querySelector('#pause'),

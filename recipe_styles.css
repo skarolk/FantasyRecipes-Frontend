@@ -5,10 +5,40 @@ body {
   background: #F1f1f2;
   padding: 0;
   text-align: center;
-  font-family: 'open sans';
+  /* font-family: 'open sans'; */
   position: relative;
   margin: 0;
   height: 100%;
+}
+
+.recipeHeader {
+  padding-top: 4%;
+  color: #FFFFFF;
+  font-size: 30px;
+  text-shadow: 0px 2px 2px black;
+}
+
+.rating {
+  color: #FFFFFF;
+  font-size: 20px;
+  text-shadow: 0px 2px 2px black;
+}
+
+.ingredients {
+  color: #FFFFFF;
+  font-size: 16px;
+  text-shadow: 0px 1px 2px black;
+}
+
+.ingredientsContainer {
+  padding-top: 2%;
+}
+
+.instructions {
+  padding-top: 2%;
+  color: #FFFFFF;
+  font-size: 18px;
+  text-shadow: 0px 1px 2px black;
 }
 
 .wrapper {
@@ -22,7 +52,11 @@ a {
   text-decoration: none;
 }
 
-
+.logo {
+  width: 600px;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
 
 h1, h2 {
   width: 100%;
@@ -106,70 +140,10 @@ pre code {
   background: #1ABC9C;
 }
 
-.reload.bell {
-  font-size: 12px;
-  padding: 20px;
-  width: 45px;
-  text-align: center;
-  height: 47px;
-  border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-}
-
-.reload.bell #notification {
-  font-size: 25px;
-  line-height: 140%;
-}
-
-.reload, .btn{
-  display: inline-block;
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  display: inline-block;
-  line-height: 100%;
-  padding: 0.7em;
-  text-decoration: none;
-  width: 100px;
-  line-height: 140%;
-  font-size: 17px;
-  font-family: Open Sans;
-  font-weight: bold;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  background-color: #4D90FE;
-  background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
-  background-image: -webkit-moz-gradient(top,#4D90FE,#4787ED);
-  background-image: linear-gradient(top,#4d90fe,#4787ed);
-  border: 1px solid #3079ED;
-  color: #FFF;
-}
-.reload:hover{
-  background: #317af2;
-}
-.btn {
-  width: 200px;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  background-color: #4D90FE;
-  background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
-  background-image: -moz-linear-gradient(top,#4D90FE,#4787ED);
-  background-image: linear-gradient(top,#4d90fe,#4787ed);
-  border: 1px solid #3079ED;
-  color: #FFF;
-}
 .clear {
   width: auto;
 }
-.btn:hover, .btn:hover {
-  background: #317af2;
-}
-.btns {
-  float: left;
-  width: 100%;
-  margin: 50px auto;
-}
+
 .credit {
   text-align: center;
   color: #888;
@@ -289,26 +263,6 @@ pre code {
   height: 500px;
   background-size: 100% 100%;
 }
-
-/* .tps-section:nth-child(1n+1) .tps-wrapper {
-  background: url(demo1.jpg) center center;
-  background-size: cover;
-}
-
-.tps-section:nth-child(2n+1) .tps-wrapper {
-  background:  url(demo2.jpg) center center;
-  background-size: cover;
-}
-
-.tps-section:nth-child(3n+1) .tps-wrapper {
-  background:  url(demo3.jpg) center center;
-  background-size: cover;
-}
-
-.tps-section:nth-child(4n+1) .tps-wrapper {
-  background:  url(demo4.jpg) center center;
-  background-size: cover;
-} */
 
 .header {
   overflow: hidden;
