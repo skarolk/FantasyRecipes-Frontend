@@ -38,9 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
@@ -68,9 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
@@ -97,13 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
-    else if (event.target.innerText === 'Return to World Selection') {
+    else if (event.target.innerText === 'RETURN TO WORLD SELECTION') {
 
       document.getElementById('most-clicked-div').style.display = 'block'
 
@@ -119,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       event.target.remove()
     } // end return to selection 'else if'
-    else if (event.target.innerText === 'Like') {
+    else if (event.target.innerText === 'LIKE') {
 
       let ratingField = event.target.previousSibling
 
@@ -139,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchRatings(rating)
       })
     } // end like 'else if'
-    else if (event.target.innerText === 'Dislike') {
+    else if (event.target.innerText === 'DISLIKE') {
 
       let ratingField = event.target.previousSibling.previousSibling
 
@@ -225,7 +231,7 @@ function calculateMaximum(clickCounter) {
 
 function appendMaxiworld(maxName) {
   let mostClickedDiv = document.getElementById('most-clicked-div')
-  mostClickedDiv.innerText = `${maxName} has been chosen most often so far!`
+  mostClickedDiv.innerText = `${maxName} has been chosen the most often so far!`
 } // appendMaxiworld end
 
 function fetchWorldClicks(id, clicks) {
@@ -272,7 +278,7 @@ function createWorlds(world) {
   recipesDiv.className = 'main'
   let recipes = world.recipes
   recipes.forEach(recipe => {
-    let recipeHeader = document.createElement('h2')
+    let recipeHeader = document.createElement('p')
     recipeHeader.innerText = recipe.name
     // let recipeImage = document.createElement('img')
     // recipeImage.src = recipe.image
@@ -299,7 +305,7 @@ function createWorlds(world) {
     let ingredients = recipe.ingredients
     ingredients.forEach(ingredient => {
       let ingredientsLi = document.createElement('p')
-      ingredientsLi.innerText = `${ingredient.quantity} ${ingredient.name}`
+      ingredientsLi.innerText = `${ingredient.quantity}`
       ingredientsLi.className = 'ingredients'
       ingredientsUl.className = 'ingredientsContainer'
       ingredientsUl.appendChild(ingredientsLi)
@@ -365,9 +371,6 @@ function renderVideo(targetUrl) {
     videoEl: document.querySelector('#background_video'),
     container: document.querySelector('body'),
     resize: true,
-
-    playButton: document.querySelector('#play'),
-    pauseButton: document.querySelector('#pause'),
 
     src: [
       {

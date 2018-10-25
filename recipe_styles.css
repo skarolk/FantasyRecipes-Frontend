@@ -5,29 +5,58 @@ body {
   background: #F1f1f2;
   padding: 0;
   text-align: center;
-  /* font-family: 'open sans'; */
   position: relative;
   margin: 0;
   height: 100%;
 }
 
+.ratingButton {
+  border: 2px solid rgba(255,255,255,0.20);
+  border-radius: 61px;
+  font-size: 10px;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+.returnButton {
+  border: 2px solid rgba(255,255,255,0.20);
+  border-radius: 61px;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 10px 25px;
+  display: inline-block;
+  margin-right: 15px;
+  position: absolute; top: 5%; right: 2%
+}
+
 .recipeHeader {
-  padding-top: 4%;
+  padding-top: 7%;
+  padding-bottom: 2%;
   color: #FFFFFF;
   font-size: 30px;
-  text-shadow: 0px 2px 2px black;
+  /* text-shadow: 0px 2px 2px black; */
 }
 
 .rating {
   color: #FFFFFF;
   font-size: 20px;
-  text-shadow: 0px 2px 2px black;
+  padding-bottom: 0.5%;
+  /* text-shadow: 0px 2px 2px black; */
 }
 
 .ingredients {
   color: #FFFFFF;
-  font-size: 16px;
-  text-shadow: 0px 1px 2px black;
+  font-size: 12px;
+  /* text-shadow: 0px 1px 2px black; */
 }
 
 .ingredientsContainer {
@@ -35,10 +64,15 @@ body {
 }
 
 .instructions {
-  padding-top: 2%;
+  padding-top: 3%;
+  padding-right: 8%;
   color: #FFFFFF;
-  font-size: 18px;
-  text-shadow: 0px 1px 2px black;
+  font-size: 13px;
+  max-width: 750px;
+  width: auto;
+  text-align: justify;
+  position: fixed; top: 53%; left: 8%
+  /* text-shadow: 0px 1px 2px black; */
 }
 
 .wrapper {
