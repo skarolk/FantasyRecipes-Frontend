@@ -9,12 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
   getData()
   renderVideo('.git/three.mp4')
 
+  // $(document).ready(function(){
+  //   $(".main").tiltedpage_scroll({
+  //     angle: 20
+  //   });
+  // });
+
+  let clicked = 'not clicked'
+
   document.addEventListener('click', (event) => {
 
     event.preventDefault()
 
     document.getElementById('background_video').innerHTML =  ''
 
+    if (clicked === 'not clicked') {
+      clicked = 'clicked'
+      $(document).ready(function(){
+        $(".main").tiltedpage_scroll({
+          angle: 20
+        });
+      });
+    }
 
     if (event.target.className === 'Star Wars') {
       document.getElementById('most-clicked-div').style.display = 'none'
@@ -25,14 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      if (event.target.clicked === false) {
-        event.target.clicked = true
-        $(document).ready(function(){
-          $(".main").tiltedpage_scroll({
-            angle: 20
-          });
-        });
-      }
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/sw.mp4')
@@ -60,14 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trackClicks(clickCounter)
 
-      if (event.target.clicked === false) {
-        event.target.clicked = true
-        $(document).ready(function(){
-          $(".main").tiltedpage_scroll({
-            angle: 20
-          });
-        });
-      }
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/hp.mp4')
@@ -94,14 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      if (event.target.clicked === false) {
-        event.target.clicked = true
-        $(document).ready(function(){
-          $(".main").tiltedpage_scroll({
-            angle: 20
-          });
-        });
-      }
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/lotr.mp4')
