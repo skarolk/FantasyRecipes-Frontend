@@ -164,8 +164,9 @@ function createWorlds(world) {
   worldRecipesContainer.id = world.name
   worldRecipesContainer.className = 'recipesContainer'
   worldRecipesContainer.style.display = 'none'
-  let worldHeader = document.createElement('h1')
-  worldHeader.innerText = world.name
+  let worldHeader = document.createElement('img')
+  worldHeader.className = 'logo'
+  worldHeader.src = world.image
   // render recipes
   let recipesDiv = document.createElement('div')
   recipesDiv.className = 'main'
@@ -189,10 +190,10 @@ function createWorlds(world) {
     downVote.id = recipe.id
     downVote.innerText = "Dislike"
     // render ingredients
-    let ingredientsUl = document.createElement('ul')
+    let ingredientsUl = document.createElement('div')
     let ingredients = recipe.ingredients
     ingredients.forEach(ingredient => {
-      let ingredientsLi = document.createElement('li')
+      let ingredientsLi = document.createElement('p')
       ingredientsLi.innerText = `${ingredient.quantity} ${ingredient.name}`
       ingredientsUl.appendChild(ingredientsLi)
     })
@@ -249,8 +250,6 @@ function renderVideo(targetUrl) {
     videoEl: document.querySelector('#background_video'),
     container: document.querySelector('body'),
     resize: true,
-
-    isMobile: window.matchMedia('(max-width: 768px)').matches,
 
     playButton: document.querySelector('#play'),
     pauseButton: document.querySelector('#pause'),
