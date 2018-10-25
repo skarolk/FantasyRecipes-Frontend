@@ -1,25 +1,39 @@
+let clickCounter = {}
 const worldsAPI = 'http://localhost:3000/api/v1/worlds'
 const recipesAPI = 'http://localhost:3000/api/v1/recipes'
 const ratingsAPI = 'http://localhost:3000/api/v1/ratings'
 const ingredientsAPI = 'http://localhost:3000/api/v1/ingredients'
 document.addEventListener('DOMContentLoaded', () => {
 
+  getDataForClicks()
   getData()
   renderVideo('.git/three.mp4')
 
   document.addEventListener('click', (event) => {
+
     event.preventDefault()
 
     document.getElementById('background_video').innerHTML =  ''
 
+
     if (event.target.className === 'Star Wars') {
+      document.getElementById('most-clicked-div').style.display = 'none'
+      clickCounter[event.target.className] += 1
+      let clicks = clickCounter[event.target.className]
+      worldId = parseInt(event.target.id)
+
+      fetchWorldClicks(worldId, clicks)
+      trackClicks(clickCounter)
+
       $(document).ready(function(){
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/sw.mp4')
+
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -31,13 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
     else if (event.target.className === 'Harry Potter') {
+
+      document.getElementById('most-clicked-div').style.display = 'none'
+      clickCounter[event.target.className] += 1
+      let clicks = clickCounter[event.target.className]
+      worldId = parseInt(event.target.id)
+
+      fetchWorldClicks(worldId, clicks)
+
+      trackClicks(clickCounter)
+
       $(document).ready(function(){
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/hp.mp4')
+
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -49,13 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
     else if (event.target.className === 'The Lord of the Rings') {
+
+      document.getElementById('most-clicked-div').style.display = 'none'
+      clickCounter[event.target.className] += 1
+      let clicks = clickCounter[event.target.className]
+      worldId = parseInt(event.target.id)
+
+      fetchWorldClicks(worldId, clicks)
+      trackClicks(clickCounter)
+
       $(document).ready(function(){
         $(".main").tiltedpage_scroll({
           angle: 20
         });
-  		});
+        });
+
       newVideo()
       renderVideo('.git/lotr.mp4')
+
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
@@ -67,8 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
     else if (event.target.innerText === 'Return to World Selection') {
+
+      document.getElementById('most-clicked-div').style.display = 'block'
+
       newVideo()
       renderVideo('.git/three.mp4')
+
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
       let htmlCollection = document.getElementsByClassName('recipesContainer')
@@ -79,7 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
       event.target.remove()
     } // end return to selection 'else if'
     else if (event.target.innerText === 'Like') {
+
       let ratingField = event.target.previousSibling
+
       fetch(ratingsAPI, {
         method: "POST",
         headers: {
@@ -97,7 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     } // end like 'else if'
     else if (event.target.innerText === 'Dislike') {
+
       let ratingField = event.target.previousSibling.previousSibling
+
       fetch(ratingsAPI, {
         method: "POST",
         headers: {
@@ -124,6 +169,7 @@ function getData() {
     results.map(result => createWorlds(result))
   )
 } // getData end
+
 function fetchRatings(rating) {
   fetch(ratingsAPI)
   .then(result => {
@@ -136,11 +182,12 @@ function fetchRatings(rating) {
     return calculateLikePercentage(matchingRatings, rating)
   })
 } // fetchRatings end
+
 function calculateLikePercentage(matchingRatings, rating) {
   let upvote = matchingRatings.filter(eachRating => {
     return eachRating.score === true
   })
-  let upvotePercentage = `${Math.ceil((upvote.length / matchingRatings.length) * 100)}% of people liked this recipe`
+  let upvotePercentage = `${Math.ceil((upvote.length / matchingRatings.length) * 100)}% liked`
   let allPTags = document.querySelectorAll('p')
   let allPTagsArray = Array.from(allPTags)
   let pTag = allPTagsArray.find(ptag => {
@@ -148,6 +195,55 @@ function calculateLikePercentage(matchingRatings, rating) {
   })
   pTag.innerText = upvotePercentage
 } // calculateLikePercentage end
+
+function getDataForClicks() {
+  fetch(worldsAPI)
+  .then(results => results.json())
+  .then(results => {
+    results.map(world => {
+      trackClicks(world)
+    })
+  })
+} // getDataForClicks end
+
+function trackClicks(world) {
+  clickCounter[world.name] = world.clicks
+  calculateMaximum(clickCounter)
+} // trackClicks end
+
+function calculateMaximum(clickCounter) {
+  let maximum = 0
+  maxName = ''
+  for (let world in clickCounter) {
+    if (clickCounter[world] > maximum) {
+      maximum = clickCounter[world]
+      maxName = world
+    }
+  }
+  appendMaxiworld(maxName)
+} // calculateMaxinum end
+
+function appendMaxiworld(maxName) {
+  let mostClickedDiv = document.getElementById('most-clicked-div')
+  mostClickedDiv.innerText = `${maxName} has been chosen most often so far!`
+} // appendMaxiworld end
+
+function fetchWorldClicks(id, clicks) {
+  console.log(clickCounter);
+  fetch(`${worldsAPI}/${id}`, {
+    method: 'PATCH',
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      'clicks': clicks,
+    })
+  })
+  .then(result => result.json())
+  .then(console.log)
+} // fetchWorldClicks end
+
 function createWorlds(world) {
   // world selection
   let globalContainer = document.getElementsByClassName('main_container')
@@ -167,6 +263,7 @@ function createWorlds(world) {
   worldRecipesContainer.id = world.name
   worldRecipesContainer.className = 'recipesContainer'
   worldRecipesContainer.style.display = 'none'
+  worldButton.id = world.id
   let worldHeader = document.createElement('img')
   worldHeader.className = 'logo'
   worldHeader.src = world.image
@@ -183,6 +280,9 @@ function createWorlds(world) {
     let ratings = recipe.ratings
     let positiveRatings = ratings.filter(rating => rating.score === true)
     let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% of people liked this recipe`
+    if (ratings.length === 0){
+      percentRating = 'Be the first to rate this recipe!'
+    }
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
     ratingP.id = recipe.id
