@@ -25,11 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
+      if (event.target.clicked === false) {
+        event.target.clicked = true
+        $(document).ready(function(){
+          $(".main").tiltedpage_scroll({
+            angle: 20
+          });
         });
-        });
+      }
 
       newVideo()
       renderVideo('.git/sw.mp4')
@@ -57,11 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
+      if (event.target.clicked === false) {
+        event.target.clicked = true
+        $(document).ready(function(){
+          $(".main").tiltedpage_scroll({
+            angle: 20
+          });
         });
-        });
+      }
 
       newVideo()
       renderVideo('.git/hp.mp4')
@@ -88,11 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
+      if (event.target.clicked === false) {
+        event.target.clicked = true
+        $(document).ready(function(){
+          $(".main").tiltedpage_scroll({
+            angle: 20
+          });
         });
-        });
+      }
 
       newVideo()
       renderVideo('.git/lotr.mp4')
@@ -262,6 +271,7 @@ function createWorlds(world) {
   worldButton.innerText = world.name
   worldButton.image = world.image
   worldButton.className = world.name
+  worldButton.clicked = false
   worldContainer.appendChild(worldButton)
   // world render
   let renderContainer = document.getElementById('renderContainer')
@@ -348,9 +358,9 @@ function createWorlds(world) {
 $(".main").tiltedpage_scroll({
     sectionContainer: "> section",     // In case you don't want to use <section> tag, you can define your won CSS selector here
     angle: 50,                         // You can define the angle of the tilted section here. Change this to false if you want to disable the tilted effect. The default value is 50 degrees.
-    opacity: true,                     // You can toggle the opacity effect with this option. The default value is true
-    scale: true,                       // You can toggle the scaling effect here as well. The default value is true.
-    outAnimation: true                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
+    opacity: false,                     // You can toggle the opacity effect with this option. The default value is true
+    scale: false,                       // You can toggle the scaling effect here as well. The default value is true.
+    outAnimation: false                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
   });
 
 function newVideo() {
@@ -365,7 +375,6 @@ function newVideo() {
 }
 
 function renderVideo(targetUrl) {
-
   var bv = new Bideo();
   bv.init({
     videoEl: document.querySelector('#background_video'),
