@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', () => {
   getData()
   renderVideo('.git/three.mp4')
 
+  // $(document).ready(function(){
+  //   $(".main").tiltedpage_scroll({
+  //     angle: 20
+  //   });
+  // });
+
+  let clicked = 'not clicked'
 
   document.addEventListener('click', (event) => {
 
@@ -17,6 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('background_video').innerHTML =  ''
 
+    if (clicked === 'not clicked') {
+      clicked = 'clicked'
+      $(document).ready(function(){
+        $(".main").tiltedpage_scroll({
+          angle: 20
+        });
+      });
+    }
 
     if (event.target.className === 'Star Wars') {
       document.getElementById('most-clicked-div').style.display = 'none'
@@ -27,11 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
-        });
-        });
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/sw.mp4')
@@ -40,9 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end star wars 'if'
@@ -57,11 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
-        });
-        });
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/hp.mp4')
@@ -70,9 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
@@ -85,11 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
-      $(document).ready(function(){
-        $(".main").tiltedpage_scroll({
-          angle: 20
-        });
-        });
+      // if (event.target.clicked === false) {
+      //   event.target.clicked = true
+      //   $(document).ready(function(){
+      //     $(".main").tiltedpage_scroll({
+      //       angle: 20
+      //     });
+      //   });
+      // }
 
       newVideo()
       renderVideo('.git/lotr.mp4')
@@ -98,13 +126,16 @@ document.addEventListener('DOMContentLoaded', () => {
       targetDiv.style.display = 'block'
       document.getElementById("head").style.display = 'none'
       document.getElementById("links").style.display = 'none'
-      let returnButton = document.createElement('button')
+      let returnButton = document.createElement('a')
+      returnButton.href = ''
       returnButton.innerText = 'Return to World Selection'
       returnButton.id = "returnButton"
+      returnButton.className = "returnButton"
       let renderContainer = document.getElementById('renderContainer')
       renderContainer.appendChild(returnButton)
     } // end lotr 'else if'
-    else if (event.target.innerText === 'Return to World Selection') {
+    else if (event.target.innerText === 'RETURN TO WORLD SELECTION') {
+
       document.getElementById('most-clicked-div').style.display = 'block'
 
       newVideo()
@@ -119,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       event.target.remove()
     } // end return to selection 'else if'
-    else if (event.target.innerText === 'Like') {
+    else if (event.target.innerText === 'LIKE') {
 
       let ratingField = event.target.previousSibling
 
@@ -139,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchRatings(rating)
       })
     } // end like 'else if'
-    else if (event.target.innerText === 'Dislike') {
+    else if (event.target.innerText === 'DISLIKE') {
 
       let ratingField = event.target.previousSibling.previousSibling
 
@@ -226,7 +257,7 @@ function calculateMaximum(clickCounter) {
 
 function appendMaxiworld(maxName) {
   let mostClickedDiv = document.getElementById('most-clicked-div')
-  mostClickedDiv.innerText = `${maxName} has been chosen most often so far!`
+  mostClickedDiv.innerText = `${maxName} has been chosen the most often so far!`
 } // appendMaxiworld end
 
 function fetchWorldClicks(id, clicks) {
@@ -257,7 +288,7 @@ function createWorlds(world) {
   worldButton.innerText = world.name
   worldButton.image = world.image
   worldButton.className = world.name
-  worldButton.id = world.id
+  worldButton.clicked = false
   worldContainer.appendChild(worldButton)
   // world render
   let renderContainer = document.getElementById('renderContainer')
@@ -274,7 +305,7 @@ function createWorlds(world) {
   recipesDiv.className = 'main'
   let recipes = world.recipes
   recipes.forEach(recipe => {
-    let recipeHeader = document.createElement('h2')
+    let recipeHeader = document.createElement('p')
     recipeHeader.innerText = recipe.name
     // let recipeImage = document.createElement('img')
     // recipeImage.src = recipe.image
@@ -303,7 +334,7 @@ function createWorlds(world) {
     let ingredients = recipe.ingredients
     ingredients.forEach(ingredient => {
       let ingredientsLi = document.createElement('p')
-      ingredientsLi.innerText = `${ingredient.quantity} ${ingredient.name}`
+      ingredientsLi.innerText = `${ingredient.quantity}`
       ingredientsLi.className = 'ingredients'
       ingredientsUl.className = 'ingredientsContainer'
       ingredientsUl.appendChild(ingredientsLi)
@@ -345,9 +376,9 @@ function createWorlds(world) {
 $(".main").tiltedpage_scroll({
     sectionContainer: "> section",     // In case you don't want to use <section> tag, you can define your won CSS selector here
     angle: 50,                         // You can define the angle of the tilted section here. Change this to false if you want to disable the tilted effect. The default value is 50 degrees.
-    opacity: true,                     // You can toggle the opacity effect with this option. The default value is true
-    scale: true,                       // You can toggle the scaling effect here as well. The default value is true.
-    outAnimation: true                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
+    opacity: false,                     // You can toggle the opacity effect with this option. The default value is true
+    scale: false,                       // You can toggle the scaling effect here as well. The default value is true.
+    outAnimation: false                 // In case you do not want the out animation, you can toggle this to false. The defaul value is true.
   });
 
 function newVideo() {
@@ -362,15 +393,11 @@ function newVideo() {
 }
 
 function renderVideo(targetUrl) {
-
   var bv = new Bideo();
   bv.init({
     videoEl: document.querySelector('#background_video'),
     container: document.querySelector('body'),
     resize: true,
-
-    playButton: document.querySelector('#play'),
-    pauseButton: document.querySelector('#pause'),
 
     src: [
       {
