@@ -402,6 +402,7 @@ function renderVideo(targetUrl) {
     src: [
       {
         src: targetUrl,
+        type: 'video/mp4'
       },
     ],
   });
