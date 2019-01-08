@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getDataForClicks()
   getData()
-  renderVideo('three.mp4')
+  renderVideo('.three.mp4')
 
   // $(document).ready(function(){
   //   $(".main").tiltedpage_scroll({
