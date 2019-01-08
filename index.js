@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getDataForClicks()
   getData()
-  renderVideo('https://vimeo.com/310045476')
+  renderVideo('three.mp4')
 
   // $(document).ready(function(){
   //   $(".main").tiltedpage_scroll({
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('https://vimeo.com/310045476')
+      renderVideo('sw.mp4')
 
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('https://vimeo.com/310045462')
+      renderVideo('hp.mp4')
 
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('https://vimeo.com/310045470')
+      renderVideo('lotr.mp4')
 
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
