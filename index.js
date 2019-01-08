@@ -3,12 +3,12 @@ const worldsAPI = 'https://fantasy-recipes-backend.herokuapp.com/worlds'
 const recipesAPI = 'https://fantasy-recipes-backend.herokuapp.com/recipes'
 const ratingsAPI = 'https://fantasy-recipes-backend.herokuapp.com/ratings'
 const ingredientsAPI = 'https://fantasy-recipes-backend.herokuapp.com/ingredients'
-document.addEventListener('DOMContentLoaded', () => {
 
+document.addEventListener('DOMContentLoaded', () => {
 
   getDataForClicks()
   getData()
-  renderVideo('three.mp4')
+  renderVideo('.git/three.mp4')
 
   // $(document).ready(function(){
   //   $(".main").tiltedpage_scroll({
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('sw.mp4')
+      renderVideo('.git/sw.mp4')
 
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('hp.mp4')
+      renderVideo('.git/hp.mp4')
 
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
@@ -102,11 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
       renderContainer.appendChild(returnButton)
     } // end hp 'else if'
     else if (event.target.className === 'The Lord of the Rings') {
-      document.getElementById('most-clicked-div').style.display = 'none'
 
+      document.getElementById('most-clicked-div').style.display = 'none'
       clickCounter[event.target.className] += 1
       let clicks = clickCounter[event.target.className]
       worldId = parseInt(event.target.id)
+
       fetchWorldClicks(worldId, clicks)
       trackClicks(clickCounter)
 
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('lotr.mp4')
+      renderVideo('.git/lotr.mp4')
 
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
@@ -139,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('most-clicked-div').style.display = 'block'
 
       newVideo()
-      renderVideo('three.mp4')
+      renderVideo('.git/three.mp4')
 
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
@@ -227,7 +228,6 @@ function calculateLikePercentage(matchingRatings, rating) {
   pTag.innerText = upvotePercentage
 } // calculateLikePercentage end
 
-
 function getDataForClicks() {
   fetch(worldsAPI)
   .then(results => results.json())
@@ -312,12 +312,10 @@ function createWorlds(world) {
     // render ratings
     let ratings = recipe.ratings
     let positiveRatings = ratings.filter(rating => rating.score === true)
-    let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% liked`
-
+    let percentRating = `${Math.ceil((positiveRatings.length / ratings.length) * 100)}% of people liked this recipe`
     if (ratings.length === 0){
       percentRating = 'Be the first to rate this recipe!'
     }
-
     let ratingP = document.createElement('p')
     ratingP.innerText = percentRating
     ratingP.id = recipe.id
@@ -367,6 +365,7 @@ function createWorlds(world) {
     recipeDiv.appendChild(recipeInstructions)
     recipeSection.appendChild(recipeDiv)
     recipesDiv.appendChild(recipeSection)
+    // debugger
   })
   worldRecipesContainer.appendChild(worldHeader)
   worldRecipesContainer.appendChild(recipesDiv)
@@ -402,7 +401,6 @@ function renderVideo(targetUrl) {
     src: [
       {
         src: targetUrl,
-        type: 'video/mp4'
       },
     ],
   });
