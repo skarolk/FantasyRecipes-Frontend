@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getDataForClicks()
   getData()
-  renderVideo('.git/three.mp4')
+  renderVideo('three.mp4')
 
   // $(document).ready(function(){
   //   $(".main").tiltedpage_scroll({
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('.git/sw.mp4')
+      renderVideo('sw.mp4')
 
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('.git/hp.mp4')
+      renderVideo('hp.mp4')
 
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('.git/lotr.mp4')
+      renderVideo('lotr.mp4')
 
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('most-clicked-div').style.display = 'block'
 
       newVideo()
-      renderVideo('.git/three.mp4')
+      renderVideo('three.mp4')
 
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
