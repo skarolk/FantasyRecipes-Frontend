@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('most-clicked-div').style.display = 'block'
 
       newVideo()
-      renderVideo('hi.mp4')
+      renderVideo('three.mp4')
 
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
