@@ -1,8 +1,8 @@
 let clickCounter = {}
-const worldsAPI = 'http://localhost:3000/api/v1/worlds'
-const recipesAPI = 'http://localhost:3000/api/v1/recipes'
-const ratingsAPI = 'http://localhost:3000/api/v1/ratings'
-const ingredientsAPI = 'http://localhost:3000/api/v1/ingredients'
+const worldsAPI = 'https://fantasy-recipes-backend.herokuapp.com/worlds'
+const recipesAPI = 'https://fantasy-recipes-backend.herokuapp.com/recipes'
+const ratingsAPI = 'https://fantasy-recipes-backend.herokuapp.com/ratings'
+const ingredientsAPI = 'https://fantasy-recipes-backend.herokuapp.com/ingredients'
 document.addEventListener('DOMContentLoaded', () => {
 
 
