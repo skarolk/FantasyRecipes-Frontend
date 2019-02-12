@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   getDataForClicks()
   getData()
-  renderVideo('three.mp4')
+  renderVideo('https://s3.us-east-2.amazonaws.com/fantasy-recipes/three.mp4')
 
   // $(document).ready(function(){
   //   $(".main").tiltedpage_scroll({
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('sw.mp4')
+      renderVideo('https://s3.us-east-2.amazonaws.com/fantasy-recipes/sw.mp4')
 
       let targetDiv = document.getElementById('Star Wars')
       targetDiv.style.display = 'block'
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('hp.mp4')
+      renderVideo('https://s3.us-east-2.amazonaws.com/fantasy-recipes/hp.mp4')
 
       let targetDiv = document.getElementById('Harry Potter')
       targetDiv.style.display = 'block'
@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // }
 
       newVideo()
-      renderVideo('lotr.mp4')
+      renderVideo('https://s3.us-east-2.amazonaws.com/fantasy-recipes/lotr.mp4')
 
       let targetDiv = document.getElementById('The Lord of the Rings')
       targetDiv.style.display = 'block'
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('most-clicked-div').style.display = 'block'
 
       newVideo()
-      renderVideo('three.mp4')
+      renderVideo('https://s3.us-east-2.amazonaws.com/fantasy-recipes/three.mp4')
 
       document.getElementById("head").style.display = 'block'
       document.getElementById("links").style.display = 'block'
